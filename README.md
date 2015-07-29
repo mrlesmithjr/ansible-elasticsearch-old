@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Installs elasticsearch role
+Installs elasticsearch role https://www.elastic.co/
 
 Requirements
 ------------
@@ -53,4 +53,7 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Larry Smith Jr.
+- @mrlesmithjr
+- http://everythingshouldbevirtual.com
+- mrlesmithjr [at] gmail.com
