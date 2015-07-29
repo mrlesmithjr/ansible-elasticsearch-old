@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs elasticsearch role
 
 Requirements
 ------------
@@ -11,7 +11,25 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+````
+es_cluster_name: ansible-test #defines es_cluster_name if not specified in group_vars
+es_config_lvm: false  #defines if additional lvm volume is to be created
+es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
+es_curator_close_after_days: 14  #defines the number of days before closing indexes
+es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
+es_fqdn: localhost
+es_nfs:
+  - mount: []
+    opts: defaults
+    mountpoint: []
+es_port: 9200
+es_version: 1.7
+install_bigdesk: true
+install_curator: true
+install_eshq: true
+install_head: true
+install_marvel: true
+````
 
 Dependencies
 ------------
@@ -25,7 +43,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: mrlesmithjr.elasticsearch }
 
 License
 -------
