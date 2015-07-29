@@ -1,0 +1,19 @@
+---
+# defaults file for ansible-elasticsearch
+es_cluster_name: ansible-test #defines es_cluster_name if not specified in group_vars
+es_config_lvm: false  #defines if additional lvm volume is to be created
+es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
+es_curator_close_after_days: 14  #defines the number of days before closing indexes
+es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
+es_fqdn: localhost
+es_nfs:
+  - mount: []
+    opts: defaults
+    mountpoint: []
+es_port: 9200
+es_version: 1.7
+install_bigdesk: true
+install_curator: true
+install_eshq: true
+install_head: true
+install_marvel: true
