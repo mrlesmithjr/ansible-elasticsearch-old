@@ -391,3 +391,6 @@ cluster.name: {{ es_cluster_name }}
 {% endif %}
 node.name: {{ ansible_hostname }}
 bootstrap.mlockall: true
+{% if es_network.publish_host is defined %}
+es_network.publish_host: {{ es_network.publish_host }}
+{% endif %}

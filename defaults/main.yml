@@ -6,6 +6,7 @@ es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
 es_curator_close_after_days: 14  #defines the number of days before closing indexes
 es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_fqdn: localhost
+es_network.publish_host: []  #define a specific interface to bind elasticsearch on for clustering....usually not required...vagrant instances requires this...
 es_nfs:
   - mount: []
     opts: defaults
