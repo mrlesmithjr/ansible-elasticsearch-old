@@ -1,11 +1,13 @@
 ---
 # defaults file for ansible-elasticsearch
 es_cluster_name: ansible-test #defines es_cluster_name if not specified in group_vars
+es_cluster_setup: false  #defines if elasticsearch will be setup as a cluster of nodes...define here or in group_vars/group
 es_config_lvm: false  #defines if additional lvm volume is to be created
 es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
 es_curator_close_after_days: 14  #defines the number of days before closing indexes
 es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_fqdn: localhost
+es_min_master_nodes: []  #defines the minimum number of master nodes in cluster to allow cluster to not become split brained...only required if es_cluster_setup == true
 es_network_publish_host: []  #define a specific interface to bind elasticsearch on for clustering....usually not required...vagrant instances requires this...
 es_nfs:
   - mount: []

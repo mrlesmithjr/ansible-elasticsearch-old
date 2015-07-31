@@ -394,3 +394,8 @@ bootstrap.mlockall: true
 {% if es_network_publish_host is defined %}
 network.publish_host: {{ es_network_publish_host }}
 {% endif %}
+{% if es_cluster_setup is defined and es_cluster_setup %}
+{%   if es_min_master_nodes is defined %}
+discovery.zen.minimum_master_nodes: {{ es_min_master_nodes }}
+{%   endif %}
+{% endif %}

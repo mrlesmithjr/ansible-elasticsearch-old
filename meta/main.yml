@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Larry Smith Jr.
-  description: Install elasticsearch role
+  description: Installs elasticsearch - Configurable (cluster ready)
   #company: your company (optional)
   # Some suggested licenses:
   # - BSD (default)
