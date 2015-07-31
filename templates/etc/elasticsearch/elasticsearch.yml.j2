@@ -392,7 +392,7 @@ cluster.name: {{ es_cluster_name }}
 {% if es_data_node is defined %}
 node.data: {{ es_data_node }}
 {% endif %}
-{% if es_master_node is defiend %}
+{% if es_master_node is defined %}
 node.master: {{ es_master_node }}
 {% endif %}
 node.name: {{ ansible_hostname }}
