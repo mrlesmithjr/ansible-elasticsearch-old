@@ -389,6 +389,12 @@
 {% if es_cluster_name is defined %}
 cluster.name: {{ es_cluster_name }}
 {% endif %}
+{% if es_data_node is defined %}
+node.data: {{ es_data_node }}
+{% endif %}
+{% if es_master_node is defiend %}
+node.master: {{ es_master_node }}
+{% endif %}
 node.name: {{ ansible_hostname }}
 bootstrap.mlockall: true
 {% if es_network_publish_host is defined %}
