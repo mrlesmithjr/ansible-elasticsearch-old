@@ -390,10 +390,10 @@
 cluster.name: {{ es_cluster_name }}
 {% endif %}
 {% if es_data_node is defined %}
-node.data: {{ es_data_node }}
+node.data: {{ es_data_node|lower }}
 {% endif %}
 {% if es_master_node is defined %}
-node.master: {{ es_master_node }}
+node.master: {{ es_master_node|lower }}
 {% endif %}
 node.name: {{ ansible_hostname }}
 bootstrap.mlockall: true
