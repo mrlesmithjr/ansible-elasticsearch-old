@@ -388,6 +388,12 @@
 ### Specific settings set below using Ansible
 {% if es_cluster_name is defined %}
 cluster.name: {{ es_cluster_name }}
+{% if es_replicas is defined %}
+index.number_of_replicas: {{ es_replicas }}
+{% endif %}
+{% if es_shards is defined %}
+index.number_of_shards: {{ es_shards }}
+{% endif %}
 {% endif %}
 {% if es_data_node is defined %}
 node.data: {{ es_data_node|lower }}
