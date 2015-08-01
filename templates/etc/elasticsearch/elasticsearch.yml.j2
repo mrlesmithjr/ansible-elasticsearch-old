@@ -411,3 +411,10 @@ network.publish_host: {{ es_network_publish_host }}
 discovery.zen.minimum_master_nodes: {{ es_min_master_nodes }}
 {%   endif %}
 {% endif %}
+{% if es_memory_tuning is defined %}
+{%   for item in es_memory_tuning %}
+{%     if item.set %}
+{{ item.name }}: {{ item.value }}
+{%     endif %}
+{%   endfor %}
+{% endif %}

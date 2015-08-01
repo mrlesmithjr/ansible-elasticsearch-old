@@ -22,6 +22,19 @@ es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_data_node: true  #defines if node should be a data node in the cluster...default is true...define here or in group_vars/group
 es_fqdn: localhost
 es_master_node: true  #defines if node should be a master node in the cluster...default is true...define here or in group_vars/group
+es_memory_tuning:  #these settings help eliminate OOM conditions (More memory should be used in most cases but these settings can help) #define here or in group_vars/group
+  - name: indices.breaker.fielddata.limit
+    set: false
+    value: 60%  #default 60%
+  - name: indices.breaker.request.limit
+    set: false
+    value: 40%  #default 40%
+  - name: indices.breaker.total.limit
+    set: false
+    value: 40%  #default 40%
+  - name: indices.fielddata.cache.size
+    set: false
+    value: 40%  #default undefined
 es_min_master_nodes: []  #defines the minimum number of master nodes in cluster to allow cluster to not become split brained...only required if es_cluster_setup == true
 es_network_publish_host: []  #define a specific interface to bind elasticsearch on for clustering....usually not required...vagrant instances requires this...
 es_nfs:
