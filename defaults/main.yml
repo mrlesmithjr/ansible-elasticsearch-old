@@ -8,7 +8,7 @@ es_curator_close_after_days: 14  #defines the number of days before closing inde
 es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_data_node: true  #defines if node should be a data node in the cluster...default is true...define here or in group_vars/group
 es_fqdn: localhost
-es_heap_size: []  #deines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)
+#es_heap_size: 2g  #deines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)...50% of max memory is good.
 es_master_node: true  #defines if node should be a master node in the cluster...default is true...define here or in group_vars/group
 es_memory_tuning:  #these settings help eliminate OOM conditions (More memory should be used in most cases but these settings can help) #define here or in group_vars/group
   - name: indices.breaker.fielddata.limit
