@@ -11,20 +11,7 @@
 - name: installing elasticsearch curator
   apt: name=python-elasticsearch-curator state=present
 
-- name: remove old curator crontab
-  file: path=/etc/cron.d/{{ item }} state=absent
-  tags: [cron]
-  with_items:
-    - curator
-    - curator_clean
-    - curator_close
-    - curator_delete
-    - es_curator_close
-    - es_curator_delete
-    - es_curator_max_keep_days
-
 - name: install curator crontab
-  cron: cron_file=curator minute=30 hour=23 job="curator --host {{ es_fqdn }} -d {{ es_curator_max_keep_days | default(360) }}" user="root" name="curator"
   cron: name='es_curator_delete'
         minute='0' hour='10'
         user='root'
