@@ -3,7 +3,7 @@
   apt: name=python-pip state=present
 
 # remove old version install via pip module
-- pip: name=elasticsearch-curator state=absent
+#- pip: name=elasticsearch-curator state=absent
 
 - name: adding curator apt repo
   apt_repository: repo="deb http://packages.elasticsearch.org/curator/3/debian stable main" state=present

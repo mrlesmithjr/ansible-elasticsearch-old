@@ -4,6 +4,8 @@ Role Name
 Installs elasticsearch role https://www.elastic.co/
 ######Configurable (cluster ready)
 
+[![Build Status](https://travis-ci.org/mrlesmithjr/ansible-elasticsearch.svg?branch=master)](https://travis-ci.org/mrlesmithjr/ansible-elasticsearch)
+
 Requirements
 ------------
 
