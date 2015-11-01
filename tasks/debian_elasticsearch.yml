@@ -1,16 +1,25 @@
 ---
 - name: debian_elasticsearch | adding elasticsearch repo key
-  apt_key: url=https://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+  apt_key:
+    url: "{{ es_repo_key }}"
+    state: present
 
 - name: debian_elasticsearch | adding elasticsearch repo
-  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/{{ es_version }}/debian stable main' state=present
+  apt_repository:
+    repo: "{{ es_debian_repo }}"
+    state: present
 
 - name: debian_elasticsearch | installing elasticsearch and java
-  apt: name={{ item }} state=latest force=yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    force: yes
   notify: init elasticsearch
   with_items:
     - default-jre-headless
     - elasticsearch
 
 - name: debian_elasticsearch | starting elasticsearch service
-  service: name=elasticsearch state=started
+  service:
+    name: elasticsearch
+    state: started

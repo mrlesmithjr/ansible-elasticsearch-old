@@ -1,8 +1,18 @@
 ---
 - name: elasticsearch_conf | configuring elasticsearch
-  template: src=etc/elasticsearch/elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml owner=root group=root mode=0644
+  template:
+    src: etc/elasticsearch/elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: root
+    group: root
+    mode: 0644
   notify: restart elasticsearch
 
 - name: elasticsearch_conf | configuring elasticsearch service
-  template: src=etc/default/elasticsearch.j2 dest=/etc/default/elasticsearch owner=root group=root mode=0644
+  template:
+    src: etc/default/elasticsearch.j2
+    dest: /etc/default/elasticsearch
+    owner: root
+    group: root
+    mode: 0644
   notify: restart elasticsearch

@@ -4,10 +4,16 @@
   command: lvextend {{ es_lvextend_options }} /dev/{{ es_vgname }}/{{ es_lvname }}
 
 - name: stopping elasticsearch
-  service: name=elasticsearch state=stopped
+  service:
+    name: elasticsearch
+    state: stopped
 
 - name: unmounting filesystem
-  mount: name={{ es_mntp }} src=/dev/{{ es_vgname }}/{{ es_lvname }} fstype=ext4 state=unmounted
+  mount:
+    name: "{{ es_mntp }}"
+    src: "/dev/{{ es_vgname }}/{{ es_lvname }}"
+    fstype: ext4
+    state: unmounted
 
 - name: checking filesystem
   command: e2fsck -f -y /dev/{{ es_vgname }}/{{ es_lvname }}
@@ -19,7 +25,13 @@
   command: e2fsck -y /dev/{{ es_vgname }}/{{ es_lvname }}
 
 - name: mounting filesystem
-  mount: name={{ es_mntp }} src=/dev/{{ es_vgname }}/{{ es_lvname }} fstype=ext4 state=mounted
+  mount:
+    name: "{{ es_mntp }}"
+    src: "/dev/{{ es_vgname }}/{{ es_lvname }}"
+    fstype: ext4
+    state: mounted
 
 - name: restarting elasticsearch
-  service: name=elasticsearch state=started
+  service:
+    name: elasticsearch
+    state: started

@@ -1,19 +1,19 @@
 ---
 # head plugin
-- include: plugins/head.yml
-  when: install_head is defined and install_head
+#- include: plugins/head.yml
+#  when: install_head is defined and install_head
 
 # marvel plugin
-- include: plugins/marvel.yml
-  when: install_marvel is defined and install_marvel
+#- include: plugins/marvel.yml
+#  when: install_marvel is defined and install_marvel
 
 # elasticHQ plugin
-- include: plugins/elastichq.yml
-  when: install_eshq is defined and install_eshq
+#- include: plugins/elastichq.yml
+#  when: install_eshq is defined and install_eshq
 
 # bigdesk plugin
-- include: plugins/bigdesk.yml
-  when: install_bigdesk is defined and install_bigdesk
+#- include: plugins/bigdesk.yml
+#  when: install_bigdesk is defined and install_bigdesk
 
 # curator tool
 - include: plugins/debian_curator.yml
@@ -21,3 +21,14 @@
 
 - include: plugins/centos_curator.yml
   when: install_curator is defined and install_curator and ansible_os_family == "RedHat"
+
+###Below is new method of installing plugins
+- name: checking for existing plugins
+  shell: '{{ es_plugin_bin }} -l'
+  register: es_plugins_installed
+  always_run: yes
+
+- name: installing plugins
+  command: '{{ es_plugin_bin }} -i {{ item.plugin }}{{ item.name }}'
+  with_items: es_plugins_install
+  when: item.name not in es_plugins_installed.stdout

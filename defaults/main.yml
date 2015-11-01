@@ -7,6 +7,7 @@ es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
 es_curator_close_after_days: 14  #defines the number of days before closing indexes
 es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_data_node: true  #defines if node should be a data node in the cluster...default is true...define here or in group_vars/group
+es_debian_repo: 'deb http://packages.elastic.co/elasticsearch/{{ es_version }}/debian stable main'
 es_fqdn: localhost
 #es_heap_size: 2g  #defines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)...50% of max memory is good.
 es_master_node: true  #defines if node should be a master node in the cluster...default is true...define here or in group_vars/group
@@ -29,10 +30,24 @@ es_nfs:
   - mount: []
     opts: defaults
     mountpoint: []
+es_plugin_bin: /usr/share/elasticsearch/bin/plugin
+es_plugins_install:  #define plugins to install..naming is strange due to the way plugins are listed after installed
+  - plugin: elasticsearch/
+    name: marvel
+  - plugin: elastic/elasticsearch-
+    name: migration
+  - plugin: lukas-vlcek/
+    name: bigdesk
+  - plugin: mobz/elasticsearch-
+    name: head
+  - plugin: royrusso/elasticsearch-
+    name: HQ
 es_port: 9200
 es_replicas: 1  #defines the number of replicas per shard in cluster...default is 1...define here or in group_vars/group
+es_repo_key: https://packages.elastic.co/GPG-KEY-elasticsearch
 es_shards: 5  #defines the number of primary shards per index...default is 5...define here or in group_vars/group
 es_version: 1.7
+#es_version: 2.x  #ready for 2.x release of Elasticsearch
 install_bigdesk: true
 install_curator: true
 install_eshq: true
