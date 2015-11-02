@@ -26,7 +26,9 @@ es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_data_node: true  #defines if node should be a data node in the cluster...default is true...define here or in group_vars/group
 es_debian_repo: 'deb http://packages.elastic.co/elasticsearch/{{ es_version }}/debian stable main'
 es_fqdn: localhost
-#es_heap_size: 2g  #defines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)...50% of max memory is good.
+es_heap_size: '{{ (ansible_memtotal_mb | int * es_heap_size_multiplier) | round | int }}m'
+#defines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)...50% of max memory is good.
+es_heap_size_multiplier: 0.5  #defines multiplier for determining the amount of memory to allocate to ES
 es_master_node: true  #defines if node should be a master node in the cluster...default is true...define here or in group_vars/group
 es_memory_tuning:  #these settings help eliminate OOM conditions (More memory should be used in most cases but these settings can help) #define here or in group_vars/group
   - name: indices.breaker.fielddata.limit
