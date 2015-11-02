@@ -24,11 +24,11 @@
 
 ###Below is new method of installing plugins
 - name: checking for existing plugins
-  shell: '{{ es_plugin_bin }} -l'
+  shell: '{{ es_plugin_bin }} {{ es_plugin_list }}'
   register: es_plugins_installed
   always_run: yes
 
 - name: installing plugins
-  command: '{{ es_plugin_bin }} -i {{ item.plugin }}{{ item.name }}'
+  command: '{{ es_plugin_bin }} {{ es_plugin_install }} {{ item.plugin }}{{ item.name }}'
   with_items: es_plugins_install
   when: item.name not in es_plugins_installed.stdout
