@@ -38,8 +38,8 @@ es_plugin_install: -i  #define when ES vversion is below 2.x
 es_plugin_list: -l  #define when ES version is below 2.x
 #es_plugin_list: list  #define when ES version is 2.x+
 es_plugins_install:  #define plugins to install..naming is strange due to the way plugins are listed after installed
-  - plugin: elasticsearch/
-    name: marvel
+#  - plugin: elasticsearch/
+#    name: marvel
   - plugin: elastic/elasticsearch-
     name: migration
   - plugin: lukas-vlcek/
