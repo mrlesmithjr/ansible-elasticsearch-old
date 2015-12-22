@@ -3,6 +3,13 @@ FROM mrlesmithjr/ansible
 
 MAINTAINER mrlesmithjr@gmail.com
 
+# Install packages
+RUN apt-get update && apt-get install -y \
+  curl \
+  git \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Install gosu
 RUN arch="$(dpkg --print-architecture)" \
 	&& set -x \
@@ -11,12 +18,6 @@ RUN arch="$(dpkg --print-architecture)" \
 	&& gpg --verify /usr/local/bin/gosu.asc \
 	&& rm /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu
-
-# Installs git
-RUN apt-get update && apt-get install -y \
-  git \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Create Ansible Folder
 RUN mkdir -p /opt/ansible-playbooks/roles
