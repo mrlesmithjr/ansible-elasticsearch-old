@@ -34,4 +34,6 @@ EXPOSE 9200
 EXPOSE 9300
 EXPOSE 54328/udp
 
-CMD ["gosu", "elasticsearch:elasticsearch", "/usr/share/elasticsearch/bin/elasticsearch", "--default.config" ,"/etc/elasticsearch/elasticsearch.yml"]
+USER elasticsearch
+
+CMD ["/usr/share/elasticsearch/bin/elasticsearch", "--default.config" ,"/etc/elasticsearch/elasticsearch.yml"]
