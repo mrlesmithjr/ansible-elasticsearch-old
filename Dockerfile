@@ -27,7 +27,7 @@ RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.ym
 RUN apt-get clean
 
 # Mountable data directories.
-VOLUME ["/var/lib/elasticsearch", "/var/log/elasticsearch"]
+VOLUME ["/usr/share/elasticsearch/logs", "/var/lib/elasticsearch", "/var/log/elasticsearch"]
 
 #Expose ports
 EXPOSE 9200
@@ -36,4 +36,4 @@ EXPOSE 54328/udp
 
 USER elasticsearch
 
-CMD ["/usr/share/elasticsearch/bin/elasticsearch", "--default.config" ,"/etc/elasticsearch/elasticsearch.yml"]
+CMD ["/usr/share/elasticsearch/bin/elasticsearch -Des.path.conf=/etc/elasticsearch"]
