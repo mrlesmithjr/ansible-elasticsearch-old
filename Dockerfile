@@ -15,7 +15,7 @@ RUN mkdir -p /opt/ansible-playbooks/roles
 #Clone GitHub Repo
 RUN git clone https://github.com/mrlesmithjr/ansible-elasticsearch.git /opt/ansible-playbooks/roles/ansible-elasticsearch && \
   cd /opt/ansible-playbooks/roles/ansible-elasticsearch && \
-  git checkout 1.7
+  git checkout 2.1
 
 #Copy Ansible playbooks
 COPY playbook.yml /opt/ansible-playbooks/
