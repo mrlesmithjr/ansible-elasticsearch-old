@@ -1,4 +1,6 @@
 #!/bin/bash
+chown -R elasticsearch:elasticsearch /etc/elasticsearch
+ln -s /etc/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/.
 
 set -e
 
