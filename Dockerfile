@@ -1,5 +1,3 @@
-#Builds Ubuntu elasticsearch image
-
 #FROM mrlesmithjr/ansible:ubuntu-12.04
 FROM mrlesmithjr/ansible
 
@@ -11,23 +9,19 @@ RUN apt-get update && apt-get install -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#Clean up Ansible playbooks
-RUN rm -rf /opt/ansible-playbooks
+#Create Ansible Folder
+RUN mkdir -p /opt/ansible-playbooks/roles
 
-#Clone docker ansible playbooks from GitHub
-RUN git clone https://github.com/mrlesmithjr/docker-ansible-playbooks.git /opt/ansible-playbooks/
+#Clone GitHub Repo
+RUN git clone https://github.com/mrlesmithjr/ansible-elasticsearch.git /opt/ansible-playbooks/roles/ansible-elasticsearch && \
+  cd /opt/ansible-playbooks/roles/ansible-elasticsearch && \
+  git checkout 1.7
 
-#Install Ansible role requirements
-RUN ansible-galaxy install -r /opt/ansible-playbooks/elasticsearch/requirements.yml
+#Copy Ansible playbooks
+COPY playbook.yml /opt/ansible-playbooks/
 
 #Run Ansible playbook to install elasticsearch
-RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/elasticsearch/playbook.yml
-
-#Remove Ansible roles
-RUN ansible-galaxy remove /etc/ansible/roles/*
-
-#Clean up Ansible Playbooks
-RUN rm -rf /opt/ansible-playbooks
+RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.yml
 
 #Clean up APT
 RUN apt-get clean

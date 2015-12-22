@@ -93,6 +93,21 @@ Example Playbook
       roles:
         - ansible-elasticsearch
 
+Docker Info
+-----------
+
+In order to run as a Docker container you will need to run the following (below example spins up a container named elasticsearch).
+Ex.
+````
+docker run -d --name elasticsearch -p 9200:9200 mrlesmithjr/elasticsearch
+````
+You can change the name of the elasticsearch cluster (default is ansible-test) after the container is spun up if desired.
+By executing the following:
+````
+docker exec -it elasticsearch ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.yml --extra-vars="es_cluster_name=docker-es" && docker restart elasticsearch
+````
+The above will change the configuration for the elasticsearch cluster name and then the container is restarted.
+
 License
 -------
 
