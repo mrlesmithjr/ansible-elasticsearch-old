@@ -29,7 +29,7 @@ RUN apt-get clean
 VOLUME ["/usr/share/elasticsearch/logs"]
 
 # Set Permissions on directories
-RUN chown elasticsearch:elasticsearch /usr/share/elasticsearch/logs
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch
 
 # Expose ports
 EXPOSE 9200
