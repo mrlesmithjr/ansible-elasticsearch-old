@@ -51,8 +51,6 @@ RUN set -ex \
 # Mountable data directories.
 VOLUME /usr/share/elasticsearch/data
 
-RUN ln -s /etc/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/.
-
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
