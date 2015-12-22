@@ -3,6 +3,15 @@ FROM mrlesmithjr/ansible
 
 MAINTAINER mrlesmithjr@gmail.com
 
+# Install gosu
+RUN arch="$(dpkg --print-architecture)" \
+	&& set -x \
+	&& curl -o /usr/local/bin/gosu -fSL "https://github.com/tianon/gosu/releases/download/1.3/gosu-$arch" \
+	&& curl -o /usr/local/bin/gosu.asc -fSL "https://github.com/tianon/gosu/releases/download/1.3/gosu-$arch.asc" \
+	&& gpg --verify /usr/local/bin/gosu.asc \
+	&& rm /usr/local/bin/gosu.asc \
+	&& chmod +x /usr/local/bin/gosu
+
 # Installs git
 RUN apt-get update && apt-get install -y \
   git \
@@ -24,21 +33,27 @@ RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.ym
 # Clean up APT
 RUN apt-get clean
 
-# Mountable data directories.
-#VOLUME ["/usr/share/elasticsearch/logs", "/var/lib/elasticsearch", "/var/log/elasticsearch"]
-VOLUME ["/usr/share/elasticsearch/logs"]
+ENV PATH /usr/share/elasticsearch/bin:$PATH
 
-# Set Permissions on directories
-RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch
+RUN set -ex \
+	&& for path in \
+		/usr/share/elasticsearch/data \
+		/usr/share/elasticsearch/logs \
+		/usr/share/elasticsearch/config \
+		/usr/share/elasticsearch/config/scripts \
+	; do \
+		mkdir -p "$path"; \
+		chown -R elasticsearch:elasticsearch "$path"; \
+	done
+
+# Mountable data directories.
+VOLUME /usr/share/elasticsearch/data
+
+COPY docker-entrypoint.sh /
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Expose ports
-EXPOSE 9200
-EXPOSE 9300
-EXPOSE 54328/udp
+EXPOSE 9200 9300
 
-# Change to user elasticsearch
-USER elasticsearch
-
-CMD ["/usr/share/elasticsearch/bin/elasticsearch", "-Des.path.conf=/etc/elasticsearch"]
-
-USER root
+CMD ["elasticsearch"]
