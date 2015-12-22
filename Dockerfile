@@ -37,7 +37,8 @@ EXPOSE 9300
 EXPOSE 54328/udp
 
 # Change to user elasticsearch
-#USER elasticsearch
+USER elasticsearch
 
-#CMD ["/usr/share/elasticsearch/bin/elasticsearch", "-Des.path.conf=/etc/elasticsearch"]
-CMD su - elasticsearch -c "/usr/share/elasticsearch/bin/elasticsearch -Des.path.conf=/etc/elasticsearch"
+CMD ["/usr/share/elasticsearch/bin/elasticsearch", "-Des.path.conf=/etc/elasticsearch"]
+
+USER root
