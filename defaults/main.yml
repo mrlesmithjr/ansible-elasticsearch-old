@@ -40,10 +40,10 @@ es_plugin_list: list  #define when ES version is 2.x+
 es_plugins_install:  #define plugins to install..naming is strange due to the way plugins are listed after installed
 #  - plugin: elasticsearch/
 #    name: marvel
-  - plugin: elastic/elasticsearch-
-    name: migration
-  - plugin: lukas-vlcek/
-    name: bigdesk
+#  - plugin: elastic/elasticsearch-
+#    name: migration
+#  - plugin: lukas-vlcek/
+#    name: bigdesk
   - plugin: mobz/elasticsearch-
     name: head
   - plugin: royrusso/elasticsearch-

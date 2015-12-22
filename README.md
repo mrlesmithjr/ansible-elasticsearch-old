@@ -57,10 +57,10 @@ es_plugin_list: list  #define when ES version is 2.x+
 es_plugins_install:  #define plugins to install..naming is strange due to the way plugins are listed after installed
 #  - plugin: elasticsearch/
 #    name: marvel
-  - plugin: elastic/elasticsearch-
-    name: migration
-  - plugin: lukas-vlcek/
-    name: bigdesk
+#  - plugin: elastic/elasticsearch-
+#    name: migration
+#  - plugin: lukas-vlcek/
+#    name: bigdesk
   - plugin: mobz/elasticsearch-
     name: head
   - plugin: royrusso/elasticsearch-
@@ -69,7 +69,7 @@ es_port: 9200
 es_replicas: 1  #defines the number of replicas per shard in cluster...default is 1...define here or in group_vars/group
 es_repo_key: https://packages.elastic.co/GPG-KEY-elasticsearch
 es_shards: 5  #defines the number of primary shards per index...default is 5...define here or in group_vars/group
-es_version: 2.1
+es_version: 2.x
 #es_version: 2.x  #ready for 2.x release of Elasticsearch
 install_bigdesk: true
 install_curator: true
