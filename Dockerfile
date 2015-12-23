@@ -37,16 +37,16 @@ RUN apt-get clean
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
-RUN set -ex \
-	&& for path in \
-		/usr/share/elasticsearch/data \
-		/usr/share/elasticsearch/logs \
-		/usr/share/elasticsearch/config \
-		/usr/share/elasticsearch/config/scripts \
-	; do \
-		mkdir -p "$path"; \
-		chown -R elasticsearch:elasticsearch "$path"; \
-	done
+#RUN set -ex \
+#	&& for path in \
+#		/usr/share/elasticsearch/data \
+#		/usr/share/elasticsearch/logs \
+#		/usr/share/elasticsearch/config \
+#		/usr/share/elasticsearch/config/scripts \
+#	; do \
+#		mkdir -p "$path"; \
+#		chown -R elasticsearch:elasticsearch "$path"; \
+#	done
 
 # Mountable data directories.
 VOLUME /usr/share/elasticsearch/data

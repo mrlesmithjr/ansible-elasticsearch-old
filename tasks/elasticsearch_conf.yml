@@ -1,4 +1,18 @@
 ---
+- name: elasticsearch_conf | ensuring elasticsearch folders exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: elasticsearch
+    group: elasticsearch
+    recurse: yes
+  with_items:
+    - /usr/share/elasticsearch/data
+    - /usr/share/elasticsearch/logs
+    - /usr/share/elasticsearch/config
+    - /usr/share/elasticsearch/config/scripts
+  when: es_docker_install is defined and es_docker_install
+
 - name: elasticsearch_conf | configuring elasticsearch
   template:
     src: etc/elasticsearch/elasticsearch.yml.j2
