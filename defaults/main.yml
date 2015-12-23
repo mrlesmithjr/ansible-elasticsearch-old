@@ -9,6 +9,7 @@ es_curator_close_after_days: 14  #defines the number of days before closing inde
 es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_data_node: true  #defines if node should be a data node in the cluster...default is true...define here or in group_vars/group
 es_debian_repo: 'deb http://packages.elastic.co/elasticsearch/{{ es_version }}/debian stable main'
+es_docker_install: false  #defines if being installed in Docker
 es_fqdn: localhost
 es_heap_size: '{{ (ansible_memtotal_mb | int * es_heap_size_multiplier) | round | int }}m'
 #defines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)...50% of max memory is good.
