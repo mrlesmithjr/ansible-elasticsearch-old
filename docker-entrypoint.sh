@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Copy elasticsearch configuration created using Ansible during provisioning
+#cp /etc/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/
+#chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config
+
 set -e
 
 # Add elasticsearch as command if needed

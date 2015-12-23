@@ -13,11 +13,22 @@
   template:
     src: etc/elasticsearch/elasticsearch.yml.j2
     dest: /usr/share/elasticsearch/config/elasticsearch.yml
-    owner: root
+    owner: elasticsearch
     group: elasticsearch
     mode: 0750
   notify: restart elasticsearch
-  when: (es_docker_install is defined and es_docker_install)
+  when: es_docker_install is defined and es_docker_install
+
+- name: elasticsearch_conf | configuring elasticsearch logging
+  template:
+    src: usr/share/elasticsearch/config/logging.yml.j2
+    dest: /usr/share/elasticsearch/config/logging.yml
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0750
+  notify: restart elasticsearch
+  when: es_docker_install is defined and es_docker_install
+
 
 - name: elasticsearch_conf | configuring elasticsearch service
   template:
