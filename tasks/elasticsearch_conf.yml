@@ -29,7 +29,6 @@
   notify: restart elasticsearch
   when: es_docker_install is defined and es_docker_install
 
-
 - name: elasticsearch_conf | configuring elasticsearch service
   template:
     src: etc/default/elasticsearch.j2
