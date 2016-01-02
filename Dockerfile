@@ -5,8 +5,8 @@ FROM mrlesmithjr/ubuntu-ansible
 MAINTAINER mrlesmithjr@gmail.com
 
 #Installs git
-RUN apt-get update && apt-get install -y git && \
-    apt-get clean &&\
+RUN apt-get update && apt-get install -y git curl && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install gosu
