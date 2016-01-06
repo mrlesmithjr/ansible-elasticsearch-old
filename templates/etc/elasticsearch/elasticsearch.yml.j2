@@ -111,9 +111,7 @@ node.data: {{ es_data_node|lower }}
 {% if es_master_node is defined %}
 node.master: {{ es_master_node|lower }}
 {% endif %}
-{% if (es_docker_install is defined and not es_docker_install) or (es_vagrant_install is defined and not es_vagrant_install) %}
 node.name: {{ ansible_hostname }}
-{% endif %}
 bootstrap.mlockall: true
 {% if es_network_publish_host is defined %}
 network.publish_host: {{ es_network_publish_host }}
