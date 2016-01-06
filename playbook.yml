@@ -3,7 +3,6 @@
   sudo: true
   vars:
     - es_allow_remote_connections: true
-    - es_docker_install: true
   roles:
     - role: ansible-elasticsearch
   tasks:

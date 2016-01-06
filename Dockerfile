@@ -1,5 +1,3 @@
-#FROM mrlesmithjr/ansible:ubuntu-12.04
-#FROM mrlesmithjr/ansible:ubuntu-14.04
 FROM mrlesmithjr/ubuntu-ansible
 
 MAINTAINER mrlesmithjr@gmail.com
@@ -29,23 +27,12 @@ RUN git clone --depth=50 --branch=2.1 https://github.com/mrlesmithjr/ansible-ela
 COPY playbook.yml /opt/ansible-playbooks/
 
 # Run Ansible playbook to install elasticsearch
-RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.yml
+RUN ansible-playbook -i "localhost," -c local /opt/ansible-playbooks/playbook.yml --extra-vars "es_docker_install: true"
 
 # Clean up APT
 RUN apt-get clean
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
-
-#RUN set -ex \
-#	&& for path in \
-#		/usr/share/elasticsearch/data \
-#		/usr/share/elasticsearch/logs \
-#		/usr/share/elasticsearch/config \
-#		/usr/share/elasticsearch/config/scripts \
-#	; do \
-#		mkdir -p "$path"; \
-#		chown -R elasticsearch:elasticsearch "$path"; \
-#	done
 
 # Mountable data directories.
 VOLUME /usr/share/elasticsearch/data
