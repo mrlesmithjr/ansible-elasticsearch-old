@@ -134,3 +134,6 @@ network.host: 0.0.0.0
 {% if es_config_unicast is defined and es_config_unicast %}
 discovery.zen.ping.unicast.hosts: [{% for host in groups[es_config_unicast_group] %}"{{ host | join(", ") }}"{% endfor %}]
 {% endif %}
+{% if es_config_unicast is defined and es_config_unicast %}
+discovery.zen.ping.unicast.hosts: [{{ groups[es_config_unicast_group] | join(", ") }}]
+{% endif %}
