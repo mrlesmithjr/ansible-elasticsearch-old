@@ -131,7 +131,3 @@ discovery.zen.minimum_master_nodes: {{ es_min_master_nodes }}
 {% if (es_allow_remote_connections is defined and es_allow_remote_connections) and es_version == "2.x" %}
 network.host: 0.0.0.0
 {% endif %}
-{% (if es_config_unicast is defined and es_config_unicast) and es_config_unicast_group is defined %}
-discovery.zen.ping.unicast.hosts: [{% for host in groups.{{ es_config_unicast_group }} %}{{ host }}{% endfor %}]
-
-{% endif %}
