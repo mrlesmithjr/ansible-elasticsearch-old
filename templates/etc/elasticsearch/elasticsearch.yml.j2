@@ -418,3 +418,6 @@ discovery.zen.minimum_master_nodes: {{ es_min_master_nodes }}
 {%     endif %}
 {%   endfor %}
 {% endif %}
+{% if (es_allow_remote_connections is defined and es_allow_remote_connections) and es_version == "2.x" %}
+network.host: 0.0.0.0
+{% endif %}
