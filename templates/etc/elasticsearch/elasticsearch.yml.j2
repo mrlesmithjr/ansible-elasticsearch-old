@@ -132,6 +132,6 @@ discovery.zen.minimum_master_nodes: {{ es_min_master_nodes }}
 network.host: 0.0.0.0
 {% endif %}
 {% (if es_config_unicast is defined and es_config_unicast) and es_config_unicast_group is defined %}
-discovery.zen.ping.unicast.hosts: [{% for host in groups['es_config_unicast_group']}"{{ host }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+discovery.zen.ping.unicast.hosts: [{% for host in groups['es-cluster-nodes']}"{{ host }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 
 {% endif %}
