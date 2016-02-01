@@ -6,7 +6,7 @@ es_cluster_setup: false  #defines if elasticsearch will be setup as a cluster of
 es_config_lvm: false  #defines if additional lvm volume is to be created
 es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
 es_config_unicast: false  #defines if unicast discovery should be configured...ES 2.x
-es_config_unicast_group: 'es-cluster-nodes'  #define inventory group to configure unicast discovery
+es_config_unicast_group: 'es-cluster-nodes'  #define inventory group to configure unicast discovery...variable not used but this is the group defined in template.
 es_curator_close_after_days: 14  #defines the number of days before closing indexes
 es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_data_node: true  #defines if node should be a data node in the cluster...default is true...define here or in group_vars/group
