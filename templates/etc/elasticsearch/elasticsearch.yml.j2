@@ -132,5 +132,5 @@ discovery.zen.minimum_master_nodes: {{ es_min_master_nodes }}
 network.host: 0.0.0.0
 {% endif %}
 {% if es_config_unicast is defined and es_config_unicast %}
-discovery.zen.ping.unicast.hosts: [{{ groups["es_config_unicast_group"] | join() }}]
+discovery.zen.ping.unicast.hosts: [{{ groups.es_config_unicast_group | join() }}]
 {% endif %}
