@@ -13,7 +13,6 @@
 - include: plugins.yml
   tags:
     - elasticsearch-plugins
-    - es-uninstall-plugins
 
 - include: nfs.yml
   tags:
