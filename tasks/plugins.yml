@@ -32,7 +32,7 @@
   shell: '{{ es_plugin_bin }} -r {{ item }}'
   with_items: es_plugins_installed.stdout
   tags:
-    - es_uninstall_plugins
+    - es-uninstall-plugins
   when: >
         (es_uninstall_plugins is defined and es_uninstall_plugins) and
         es_version == '1.7'
