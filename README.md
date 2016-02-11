@@ -17,10 +17,13 @@ Role Variables
 ````
 ---
 # defaults file for ansible-elasticsearch
+es_allow_remote_connections: false  #defines if remote connections should be allowed....version 2.x
 es_cluster_name: ansible-test #defines es_cluster_name if not specified in group_vars
 es_cluster_setup: false  #defines if elasticsearch will be setup as a cluster of nodes...define here or in group_vars/group
 es_config_lvm: false  #defines if additional lvm volume is to be created
 es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
+es_config_unicast: false  #defines if unicast discovery should be configured...ES 2.x
+es_config_unicast_group: 'es-cluster-nodes'  #define inventory group to configure unicast discovery.
 es_curator_close_after_days: 14  #defines the number of days before closing indexes
 es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_data_node: true  #defines if node should be a data node in the cluster...default is true...define here or in group_vars/group
@@ -64,7 +67,7 @@ es_plugins_install:  #define plugins to install..naming is strange due to the wa
   - plugin: mobz/elasticsearch-
     name: head
   - plugin: royrusso/elasticsearch-
-    name: HQ
+    name: hq
 es_port: 9200
 es_replicas: 1  #defines the number of replicas per shard in cluster...default is 1...define here or in group_vars/group
 es_repo_key: https://packages.elastic.co/GPG-KEY-elasticsearch

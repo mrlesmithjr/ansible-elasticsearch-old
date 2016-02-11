@@ -98,12 +98,12 @@
 ### Specific settings set below using Ansible
 {% if es_cluster_name is defined %}
 cluster.name: {{ es_cluster_name }}
-{%   if es_replicas is defined %}
+{% if es_replicas is defined %}
 index.number_of_replicas: {{ es_replicas }}
-{%   endif %}
-{%   if es_shards is defined %}
+{% endif %}
+{% if es_shards is defined %}
 index.number_of_shards: {{ es_shards }}
-{%   endif %}
+{% endif %}
 {% endif %}
 {% if es_data_node is defined %}
 node.data: {{ es_data_node|lower }}
@@ -128,6 +128,9 @@ discovery.zen.minimum_master_nodes: {{ es_min_master_nodes }}
 {%     endif %}
 {%   endfor %}
 {% endif %}
-{% if es_allow_remote_connections is defined and es_allow_remote_connections %}
+{% if (es_allow_remote_connections is defined and es_allow_remote_connections) and es_version == "2.x" %}
 network.host: 0.0.0.0
+{% endif %}
+{% if es_config_unicast is defined and es_config_unicast %}
+discovery.zen.ping.unicast.hosts: [{% for host in groups[es_config_unicast_group] %}"{{ host }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 {% endif %}
