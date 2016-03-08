@@ -30,7 +30,6 @@ es_memory_tuning:  #these settings help eliminate OOM conditions (More memory sh
   - name: indices.fielddata.cache.size
     set: false
     value: 40%  #default undefined
-es_min_master_nodes: []  #defines the minimum number of master nodes in cluster to allow cluster to not become split brained...only required if es_cluster_setup == true
 #es_network_publish_host: []  #define a specific interface to bind elasticsearch on for clustering....usually not required...vagrant instances requires this...
 es_nfs:
   - mount: []

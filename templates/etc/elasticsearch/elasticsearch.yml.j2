@@ -117,9 +117,7 @@ bootstrap.mlockall: true
 network.publish_host: {{ es_network_publish_host }}
 {% endif %}
 {% if es_cluster_setup is defined and es_cluster_setup %}
-{%   if es_min_master_nodes is defined %}
-discovery.zen.minimum_master_nodes: {{ es_min_master_nodes }}
-{%   endif %}
+discovery.zen.minimum_master_nodes: {{ ( groups[es_config_unicast_group]|count /2 ) | round (0, 'ceil') | int }}
 {% endif %}
 {% if es_memory_tuning is defined %}
 {%   for item in es_memory_tuning %}
