@@ -1,28 +1,35 @@
 ---
-- name: centos_lvm | installing lvm2
+- name: redhat_lvm | installing lvm2
   yum:
     name: system-storage-manager
     state: present
+  when: ansible_distribution != "Fedora"
 
-- name: centos_lvm | creating LVM volume group
+- name: redhat_lvm | installing lvm2
+  dnf:
+    name: system-storage-manager
+    state: present
+  when: ansible_distribution == "Fedora"
+
+- name: redhat_lvm | creating LVM volume group
   lvg:
     vg: "{{ es_vgname }}"
     pvs: "{{ es_disks }}"
     state: present
 
-- name: centos_lvm | creating LVM logical volume
+- name: redhat_lvm | creating LVM logical volume
   lvol:
     vg: "{{ es_vgname }}"
     lv: "{{ es_lvname }}"
     size: 100%FREE
     state: present
 
-- name: centos_lvm | creating filesystem
+- name: redhat_lvm | creating filesystem
   filesystem:
     fstype: ext4
     dev: "/dev/{{ es_vgname }}/{{ es_lvname }}"
 
-- name: centos_lvm | mounting filesystem
+- name: redhat_lvm | mounting filesystem
   mount:
     name: "{{ es_mntp }}"
     src: "/dev/{{ es_vgname }}/{{ es_lvname }}"

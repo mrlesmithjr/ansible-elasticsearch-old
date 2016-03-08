@@ -53,7 +53,8 @@ es_plugins_install:  #define plugins to install..naming is strange due to the wa
     name: hq
 es_port: 9200
 es_replicas: 1  #defines the number of replicas per shard in cluster...default is 1...define here or in group_vars/group
-es_repo_key: https://packages.elastic.co/GPG-KEY-elasticsearch
+es_repo_key: 'https://packages.elastic.co/GPG-KEY-elasticsearch'
+es_repo_url: 'http://packages.elastic.co/elasticsearch'
 es_shards: 5  #defines the number of primary shards per index...default is 5...define here or in group_vars/group
 es_uninstall_plugins: false  #defines if installed plugins should be uninstalled...pass as cli var or other
 es_vagrant_install: false  #defines if installing within a Vagrant environment

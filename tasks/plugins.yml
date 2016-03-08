@@ -3,7 +3,7 @@
 - include: plugins/debian_curator.yml
   when: install_curator is defined and install_curator and ansible_os_family == "Debian"
 
-- include: plugins/centos_curator.yml
+- include: plugins/redhat_curator.yml
   when: install_curator is defined and install_curator and ansible_os_family == "RedHat"
 
 ###Below is new method of installing plugins
