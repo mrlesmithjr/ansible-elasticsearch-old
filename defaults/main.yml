@@ -11,11 +11,16 @@ es_curator_close_after_days: 14  #defines the number of days before closing inde
 es_curator_max_keep_days: 30  #defines the max number of days to keep indexes
 es_data_node: true  #defines if node should be a data node in the cluster...default is true...define here or in group_vars/group
 es_debian_repo: 'deb http://packages.elastic.co/elasticsearch/{{ es_version }}/debian stable main'
+es_disks:  #define disk device names to add to LVM VG if using
+  - '/dev/sdb'
+#  - '/dev/sdc'
 es_docker_install: false  #defines if being installed in Docker
 es_fqdn: localhost
 es_heap_size: '{{ (ansible_memtotal_mb | int * es_heap_size_multiplier) | round | int }}m'
 #defines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)...50% of max memory is good.
 es_heap_size_multiplier: 0.5  #defines multiplier for determining the amount of memory to allocate to ES
+es_lvextend_options: '-l +100%FREE'  #define options to pass to lvextend for extending LVM if used
+es_lvname: elasticsearch-lv  #define LVM Logical Volume to create in VG Name if using
 es_master_node: true  #defines if node should be a master node in the cluster...default is true...define here or in group_vars/group
 es_memory_tuning:  #these settings help eliminate OOM conditions (More memory should be used in most cases but these settings can help) #define here or in group_vars/group
   - name: indices.breaker.fielddata.limit
@@ -30,6 +35,7 @@ es_memory_tuning:  #these settings help eliminate OOM conditions (More memory sh
   - name: indices.fielddata.cache.size
     set: false
     value: 40%  #default undefined
+es_mntp: /var/lib/elasticsearch  #define mountpoint for LVM
 #es_network_publish_host: []  #define a specific interface to bind elasticsearch on for clustering....usually not required...vagrant instances requires this...
 es_nfs:
   - mount: []
@@ -55,11 +61,13 @@ es_port: 9200
 es_replicas: 1  #defines the number of replicas per shard in cluster...default is 1...define here or in group_vars/group
 es_repo_key: 'https://packages.elastic.co/GPG-KEY-elasticsearch'
 es_repo_url: 'http://packages.elastic.co/elasticsearch'
+es_resize_lvm: false  #defines if lvm should be resized
 es_shards: 5  #defines the number of primary shards per index...default is 5...define here or in group_vars/group
 es_uninstall_plugins: false  #defines if installed plugins should be uninstalled...pass as cli var or other
 es_vagrant_install: false  #defines if installing within a Vagrant environment
 #es_version: 1.7
 es_version: 2.x  #ready for 2.x release of Elasticsearch
+es_vgname: elasticsearch-vg  #define LVM VG name if setting up lvm for elasticsearch data
 install_bigdesk: true
 install_curator: true
 install_eshq: true
