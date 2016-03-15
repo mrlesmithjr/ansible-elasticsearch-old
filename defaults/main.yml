@@ -4,6 +4,7 @@ es_allow_remote_connections: false  #defines if remote connections should be all
 es_cluster_name: ansible-test #defines es_cluster_name if not specified in group_vars
 es_cluster_setup: false  #defines if elasticsearch will be setup as a cluster of nodes...define here or in group_vars/group
 es_config_lvm: false  #defines if additional lvm volume is to be created
+es_config_master_group: 'es-cluster-nodes'  #define inventory group to configure as master nodes..if same as es_config_unicast_group leave as is or change to another (ex.es-master-nodes)
 es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
 es_config_unicast: false  #defines if unicast discovery should be configured...ES 2.x
 es_config_unicast_group: 'es-cluster-nodes'  #define inventory group to configure unicast discovery.
