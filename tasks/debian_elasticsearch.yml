@@ -14,12 +14,13 @@
     name: "{{ item }}"
     state: latest
     force: yes
-  notify: init elasticsearch
+#  notify: init elasticsearch
   with_items:
     - default-jre-headless
     - elasticsearch
 
-- name: debian_elasticsearch | starting elasticsearch service
+- name: debian_elasticsearch | ensuring elasticsearch service is started and enabled on boot
   service:
-    name: elasticsearch
+    name: "elasticsearch"
     state: started
+    enabled: yes

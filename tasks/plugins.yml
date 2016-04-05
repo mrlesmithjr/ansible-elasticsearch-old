@@ -11,6 +11,7 @@
   shell: '{{ es_plugin_bin }} {{ es_plugin_list }}'
   register: es_plugins_installed
   always_run: yes
+  changed_when: false
 
 - name: uninstalling plugins
   shell: '{{ es_plugin_bin }} -r {{ item }}'
