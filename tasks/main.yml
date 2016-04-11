@@ -1,5 +1,8 @@
 ---
 # tasks file for ansible-elasticsearch
+- include: config_data_paths.yml
+  when: es_config_path_data
+
 - include: debian.yml
   when: ansible_os_family == "Debian"
 

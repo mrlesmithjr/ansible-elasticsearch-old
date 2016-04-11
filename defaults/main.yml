@@ -6,6 +6,7 @@ es_cluster_setup: false  #defines if elasticsearch will be setup as a cluster of
 es_config_lvm: false  #defines if additional lvm volume is to be created
 es_config_master_group: 'es-cluster-nodes'  #define inventory group to configure as master nodes..if same as es_config_unicast_group leave as is or change to another (ex.es-master-nodes)
 es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
+es_config_path_data: false  #defines if elasticsearch should be configured to store data in different data paths
 es_config_unicast: false  #defines if unicast discovery should be configured...ES 2.x
 es_config_unicast_group: 'es-cluster-nodes'  #define inventory group to configure unicast discovery.
 es_curator_close_after_days: 14  #defines the number of days before closing indexes
@@ -42,6 +43,20 @@ es_nfs:
   - mount: []
     opts: defaults
     mountpoint: []
+es_path_data_info:  #define disk devices and mountpoint path if elasticsearch should be configured to store data in different data paths
+  - disk: /dev/sdc
+    path: '{{ es_path_data_root }}/0'
+  - disk: /dev/sdd
+    path: '{{ es_path_data_root }}/1'
+  - disk: /dev/sde
+    path: '{{ es_path_data_root }}/2'
+  - disk: /dev/sdf
+    path: '{{ es_path_data_root }}/3'
+  - disk: /dev/sdg
+    path: '{{ es_path_data_root }}/4'
+  - disk: /dev/sdh
+    path: '{{ es_path_data_root }}/5'
+es_path_data_root: /es_data  #defines root path for disks to be mounted if elasticsearch should be configured to store data in different data paths
 es_plugin_bin: /usr/share/elasticsearch/bin/plugin
 #es_plugin_install: -i  #define when ES vversion is below 2.x
 es_plugin_install: install  #define when ES version is 2.x+
