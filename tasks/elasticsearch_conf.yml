@@ -51,3 +51,12 @@
     group: root
     mode: 0644
   notify: restart elasticsearch
+
+- name: elasticsearch_conf | setting permissions on directories (if using data paths)
+  file:
+    path: "{{ es_path_data_root }}"
+    owner: "root"
+    group: "elasticsearch"
+    mode: 0775
+    recurse: yes
+    state: directory
