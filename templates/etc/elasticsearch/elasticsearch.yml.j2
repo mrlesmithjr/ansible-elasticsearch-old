@@ -133,6 +133,6 @@ network.host: 0.0.0.0
 discovery.zen.ping.unicast.hosts: [{% for host in groups[es_config_unicast_group] %}"{{ host }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 {% endif %}
 {% if es_config_path_data %}
-path.data: {% for item in es_path_data_info %}{{ item.path }}{% if not loop.last %},{% endif %}{% endfor %}
+path.data: [{% for item in es_path_data_info %}"{{ item.path }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 
 {% endif %}
