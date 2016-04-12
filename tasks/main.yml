@@ -26,3 +26,6 @@
   tags:
     - es_resize_lvm
   when: es_resize_lvm is defined and es_resize_lvm
+
+- include: network_tweaks.yml
+  when: es_enable_network_tweaks
