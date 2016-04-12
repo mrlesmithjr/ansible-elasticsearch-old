@@ -23,6 +23,7 @@ es_cluster_setup: false  #defines if elasticsearch will be setup as a cluster of
 es_config_lvm: false  #defines if additional lvm volume is to be created
 es_config_master_group: 'es-cluster-nodes'  #define inventory group to configure as master nodes..if same as es_config_unicast_group leave as is or change to another (ex.es-master-nodes)
 es_config_nfs: false  #defines if an NFS mountpoint is to be mounted
+es_config_path_data: false  #defines if elasticsearch should be configured to store data in different data paths
 es_config_unicast: false  #defines if unicast discovery should be configured...ES 2.x
 es_config_unicast_group: 'es-cluster-nodes'  #define inventory group to configure unicast discovery.
 es_curator_close_after_days: 14  #defines the number of days before closing indexes
@@ -33,6 +34,7 @@ es_disks:  #define disk device names to add to LVM VG if using
   - '/dev/sdb'
 #  - '/dev/sdc'
 es_docker_install: false  #defines if being installed in Docker
+es_enable_network_tweaks: false  #defines if settings defined in es_network_tweaks are managed
 es_fqdn: localhost
 es_heap_size: '{{ (ansible_memtotal_mb | int * es_heap_size_multiplier) | round | int }}m'
 #defines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)...50% of max memory is good.
@@ -55,10 +57,34 @@ es_memory_tuning:  #these settings help eliminate OOM conditions (More memory sh
     value: 40%  #default undefined
 es_mntp: /var/lib/elasticsearch  #define mountpoint for LVM
 #es_network_publish_host: []  #define a specific interface to bind elasticsearch on for clustering....usually not required...vagrant instances requires this...
+es_network_tweaks:
+  - name: 'net.ipv4.tcp_keepalive_time'
+    state: present
+    value: '600'
+  - name: 'net.ipv4.tcp_keepalive_intvl'
+    state: present
+    value: '60'
+  - name: 'net.ipv4.tcp_keepalive_probes'
+    state: present
+    value: '3'
 es_nfs:
   - mount: []
     opts: defaults
     mountpoint: []
+es_path_data_info:  #define disk devices and mountpoint path if elasticsearch should be configured to store data in different data paths
+  - disk: /dev/sdc
+    path: '{{ es_path_data_root }}/0'
+  - disk: /dev/sdd
+    path: '{{ es_path_data_root }}/1'
+  - disk: /dev/sde
+    path: '{{ es_path_data_root }}/2'
+  - disk: /dev/sdf
+    path: '{{ es_path_data_root }}/3'
+  - disk: /dev/sdg
+    path: '{{ es_path_data_root }}/4'
+  - disk: /dev/sdh
+    path: '{{ es_path_data_root }}/5'
+es_path_data_root: /es_data  #defines root path for disks to be mounted if elasticsearch should be configured to store data in different data paths
 es_plugin_bin: /usr/share/elasticsearch/bin/plugin
 #es_plugin_install: -i  #define when ES vversion is below 2.x
 es_plugin_install: install  #define when ES version is 2.x+
