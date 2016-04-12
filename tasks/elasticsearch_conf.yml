@@ -11,7 +11,9 @@
     - /usr/share/elasticsearch/logs
     - /usr/share/elasticsearch/config
     - /usr/share/elasticsearch/config/scripts
-  when: es_docker_install is defined and es_docker_install
+  when: >
+        es_docker_install is defined and
+        es_docker_install
 
 - name: elasticsearch_conf | configuring elasticsearch
   template:
@@ -21,7 +23,9 @@
     group: elasticsearch
     mode: 0750
   notify: restart elasticsearch
-  when: (es_docker_install is defined and not es_docker_install) or es_docker_install is not defined
+  when: >
+        (es_docker_install is defined and not es_docker_install) or
+        es_docker_install is not defined
 
 - name: elasticsearch_conf | configuring elasticsearch
   template:
@@ -31,7 +35,9 @@
     group: elasticsearch
     mode: 0750
   notify: restart elasticsearch
-  when: es_docker_install is defined and es_docker_install
+  when: >
+        es_docker_install is defined and
+        es_docker_install
 
 - name: elasticsearch_conf | configuring elasticsearch logging
   template:
@@ -41,7 +47,9 @@
     group: elasticsearch
     mode: 0750
   notify: restart elasticsearch
-  when: es_docker_install is defined and es_docker_install
+  when: >
+        es_docker_install is defined and
+        es_docker_install
 
 - name: elasticsearch_conf | configuring elasticsearch service
   template:
@@ -55,7 +63,7 @@
 - name: elasticsearch_conf | setting permissions on directories (if using data paths)
   file:
     path: "{{ es_path_data_root }}"
-    owner: "root"
+    owner: "elasticsearch"
     group: "elasticsearch"
     mode: 0775
     recurse: yes
