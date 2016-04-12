@@ -17,6 +17,7 @@ es_disks:  #define disk device names to add to LVM VG if using
   - '/dev/sdb'
 #  - '/dev/sdc'
 es_docker_install: false  #defines if being installed in Docker
+es_enable_network_tweaks: false  #defines if settings defined in es_network_tweaks are managed
 es_fqdn: localhost
 es_heap_size: '{{ (ansible_memtotal_mb | int * es_heap_size_multiplier) | round | int }}m'
 #defines the amount of memory to allocate...Heap Size (defaults to 256m min, 1g max)...50% of max memory is good.
@@ -39,6 +40,16 @@ es_memory_tuning:  #these settings help eliminate OOM conditions (More memory sh
     value: 40%  #default undefined
 es_mntp: /var/lib/elasticsearch  #define mountpoint for LVM
 #es_network_publish_host: []  #define a specific interface to bind elasticsearch on for clustering....usually not required...vagrant instances requires this...
+es_network_tweaks:
+  - name: 'net.ipv4.tcp_keepalive_time'
+    state: present
+    value: '600'
+  - name: 'net.ipv4.tcp_keepalive_intvl'
+    state: present
+    value: '60'
+  - name: 'net.ipv4.tcp_keepalive_probes'
+    state: present
+    value: '3'
 es_nfs:
   - mount: []
     opts: defaults
