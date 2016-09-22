@@ -68,7 +68,7 @@
 
 - name: Configuring Curator
   template:
-    src: "/curator/{{ item }}.j2"
+    src: "curator/{{ item }}.j2"
     dest: "/opt/{{ item }}"
   with_items:
     - 'curator_actions.yml'
