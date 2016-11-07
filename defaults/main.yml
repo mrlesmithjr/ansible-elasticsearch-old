@@ -30,7 +30,7 @@ es_lvextend_options: '-l +100%FREE'  #define options to pass to lvextend for ext
 es_lvname: elasticsearch-lv  #define LVM Logical Volume to create in VG Name if using
 es_major_version: '2.x'  # (1.7|2.x)
 es_master_node: true  #defines if node should be a master node in the cluster...default is true...define here or in group_vars/group
-es_minor_version: '2.2.0'
+es_minor_version: '2.2.1'
 es_memory_tuning:  #these settings help eliminate OOM conditions (More memory should be used in most cases but these settings can help) #define here or in group_vars/group
   - name: indices.breaker.fielddata.limit
     set: false
