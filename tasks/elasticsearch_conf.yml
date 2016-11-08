@@ -68,3 +68,10 @@
     mode: 0775
     recurse: yes
     state: directory
+
+- name: elasticsearch_conf | Setting vm.max_map_count
+  sysctl:
+    name: "vm.max_map_count"
+    value: "262144"
+    state: "present"
+  notify: "restart elasticsearch"
