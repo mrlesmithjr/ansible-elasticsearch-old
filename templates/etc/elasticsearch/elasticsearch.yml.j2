@@ -1,4 +1,3 @@
-### Specific settings set below using Ansible
 {% if es_cluster_name is defined %}
 cluster.name: {{ es_cluster_name }}
 {% if es_replicas is defined and es_major_version != "5.x" %}
