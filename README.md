@@ -3,6 +3,11 @@ Role Name
 
 An [Ansible] role to install [Elasticsearch]
 
+Build Status
+------------
+
+[![Build Status](https://travis-ci.org/mrlesmithjr/ansible-elasticsearch.svg?branch=master)](https://travis-ci.org/mrlesmithjr/ansible-elasticsearch)
+
 Requirements
 ------------
 
