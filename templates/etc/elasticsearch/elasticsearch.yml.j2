@@ -41,3 +41,8 @@ discovery.zen.ping.unicast.hosts: [{% for host in groups[es_config_unicast_group
 path.data: [{% for item in es_path_data_info %}"{{ item.path }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 
 {% endif %}
+xpack.security.enabled: {{ es_xpack_security_enabled|lower }}
+xpack.monitoring.enabled: {{ es_xpack_monitoring_enabled|lower }}
+#xpack.graph.enabled: {{ es_xpack_graph_enabled|lower }}
+#xpack.watcher.enabled: {{ es_xpack_watcher_enabled|lower }}
+#xpack.reporting.enabled: {{ es_xpack_reporting_enabled|lower }}

@@ -35,7 +35,7 @@ es_lvextend_options: '-l +100%FREE'  #define options to pass to lvextend for ext
 es_lvname: 'elasticsearch-lv'  #define LVM Logical Volume to create in VG Name if using
 es_major_version: '5.x'  # (1.7|2.x|5.x)
 es_master_node: true  #defines if node should be a master node in the cluster...default is true...define here or in group_vars/group
-es_minor_version: '5.2.0' # Defines the minor version to actually install
+es_minor_version: '5.2.2' # Defines the minor version to actually install
 
 # These settings help eliminate OOM conditions (More memory should be used in most cases but these settings can help)
 es_memory_tuning:
@@ -92,9 +92,7 @@ es_path_data_info: []
 es_path_data_root: '/es_data'
 
 # Define plugins to install..naming is strange due to the way plugins are listed after installed
-es_plugins_install:
-  # - plugin: elasticsearch/
-  #  name: marvel
+es_plugins:
   # - plugin: elastic/elasticsearch-
   #  name: migration
   # - plugin: lukas-vlcek/
@@ -103,6 +101,8 @@ es_plugins_install:
   #   name: head
   # - plugin: royrusso/elasticsearch-
   #   name: hq
+    - plugin: 'x-pack'
+      state: 'absent'
 es_port: '9200'
 es_replicas: '1'  #defines the number of replicas per shard in cluster...default is 1
 es_resize_lvm: false  #defines if lvm should be resized
@@ -110,3 +110,13 @@ es_shards: '5'  #defines the number of primary shards per index...default is 5
 es_uninstall_plugins: false  #defines if installed plugins should be uninstalled...pass as cli var or other
 es_vagrant_install: false  #defines if installing within a Vagrant environment
 es_vgname: 'elasticsearch-vg'  #define LVM VG name if setting up lvm for elasticsearch data
+
+# es x-pack plugin settings
+es_xpack_graph_enabled: true
+es_xpack_monitoring_enabled: true
+es_xpack_reporting_enabled: true
+
+# https://github.com/elastic/kibana/issues/9369
+es_xpack_security_enabled: false
+
+es_xpack_watcher_enabled: true
