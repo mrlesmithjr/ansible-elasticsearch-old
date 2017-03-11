@@ -176,6 +176,7 @@ es_uninstall_plugins: false
 es_vgname: 'elasticsearch-vg'
 
 # Elasticsearch x-pack plugin settings
+es_xpack_plugin_installed: false
 es_xpack_graph_enabled: true
 es_xpack_monitoring_enabled: true
 es_xpack_reporting_enabled: true
