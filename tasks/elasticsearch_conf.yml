@@ -1,20 +1,4 @@
 ---
-# - name: elasticsearch_conf | ensuring elasticsearch folders exist
-#   file:
-#     path: "{{ item }}"
-#     state: directory
-#     owner: elasticsearch
-#     group: elasticsearch
-#     recurse: yes
-#   with_items:
-#     - /usr/share/elasticsearch/data
-#     - /usr/share/elasticsearch/logs
-#     - /usr/share/elasticsearch/config
-#     - /usr/share/elasticsearch/config/scripts
-#   when: >
-#         es_docker_install is defined and
-#         es_docker_install
-
 - name: elasticsearch_conf | configuring elasticsearch
   template:
     src: etc/elasticsearch/elasticsearch.yml.j2
@@ -23,34 +7,8 @@
     group: elasticsearch
     mode: 0750
   become: true
+  register: "_es_configured"
   notify: restart elasticsearch
-  # when: >
-  #       (es_docker_install is defined and not es_docker_install) or
-  #       es_docker_install is not defined
-
-# - name: elasticsearch_conf | configuring elasticsearch
-#   template:
-#     src: etc/elasticsearch/elasticsearch.yml.j2
-#     dest: /usr/share/elasticsearch/config/elasticsearch.yml
-#     owner: elasticsearch
-#     group: elasticsearch
-#     mode: 0750
-#   notify: restart elasticsearch
-#   when: >
-#         es_docker_install is defined and
-#         es_docker_install
-
-# - name: elasticsearch_conf | configuring elasticsearch logging
-#   template:
-#     src: usr/share/elasticsearch/config/logging.yml.j2
-#     dest: /usr/share/elasticsearch/config/logging.yml
-#     owner: elasticsearch
-#     group: elasticsearch
-#     mode: 0750
-#   notify: restart elasticsearch
-#   when: >
-#         es_docker_install is defined and
-#         es_docker_install
 
 - name: elasticsearch_conf | configuring elasticsearch service
   template:
@@ -60,6 +18,7 @@
     group: root
     mode: 0644
   become: true
+  register: "_es_service_configured"
   notify: restart elasticsearch
 
 - name: elasticsearch_conf | setting permissions on directories (if using data paths)
@@ -79,3 +38,15 @@
     state: "present"
   notify: "restart elasticsearch"
   become: true
+
+# We need to do this here in order to apply specifically memory constraints
+# to allow further configurations and etc. to not run out of memory when host is
+# low on memory resources
+- name: elasticsearch_conf | Restarting Elasticsearch
+  service:
+    name: "elasticsearch"
+    state: "restarted"
+  become: true
+  when: >
+        _es_configured['changed'] or
+        _es_service_configured['changed']
