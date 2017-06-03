@@ -102,7 +102,7 @@ es_major_version: '5.x'
 es_master_node: true
 
 # Defines Elasticsearch Minor release
-es_minor_version: '5.2.2'
+es_minor_version: '5.4.1'
 
 # These settings help eliminate OOM conditions
 # (More memory should be used in most cases but these settings can help)
