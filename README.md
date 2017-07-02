@@ -1,22 +1,18 @@
-Role Name
-=========
+# Role Name
 
 An [Ansible] role to install [Elasticsearch]
 
-Build Status
-------------
+## Build Status
 
 [![Build Status](https://travis-ci.org/mrlesmithjr/ansible-elasticsearch.svg?branch=master)](https://travis-ci.org/mrlesmithjr/ansible-elasticsearch)
 
-Requirements
-------------
+## Requirements
 
 None
 
-Role Variables
---------------
+## Role Variables
 
-```
+```yaml
 ---
 # defaults file for ansible-elasticsearch
 
@@ -53,7 +49,7 @@ es_config_unicast_group: 'es-cluster-nodes'
 
 # Defines the number of days before closing indexes
 es_curator_close_after_days: '14'
-es_curator_debian_repo: 'deb http://packages.elastic.co/curator/{{ es_curator_version }}/debian stable main'
+es_curator_debian_repo: 'deb [arch=amd64] http://packages.elastic.co/curator/{{ es_curator_version }}/debian stable main'
 
 # Define the host(s) to run curator against
 es_curator_elasticsearch_hosts:
@@ -62,7 +58,7 @@ es_curator_elasticsearch_hosts:
 # Defines the max number of days to keep indexes
 es_curator_max_keep_days: '30'
 
-es_curator_version: '4'
+es_curator_version: '5'
 
 # Defines if node should be a data node in the cluster
 # default is true
@@ -102,7 +98,7 @@ es_major_version: '5.x'
 es_master_node: true
 
 # Defines Elasticsearch Minor release
-es_minor_version: '5.4.1'
+es_minor_version: 5.4.3
 
 # These settings help eliminate OOM conditions
 # (More memory should be used in most cases but these settings can help)
@@ -195,6 +191,7 @@ es_uninstall_plugins: false
 es_vgname: 'elasticsearch-vg'
 
 # Elasticsearch x-pack plugin settings
+es_xpack_plugin_installed: false
 es_xpack_graph_enabled: true
 es_xpack_monitoring_enabled: true
 es_xpack_reporting_enabled: true
@@ -205,15 +202,13 @@ es_xpack_security_enabled: false
 es_xpack_watcher_enabled: true
 ```
 
-Dependencies
-------------
+## Dependencies
 
 None
 
-Example Playbook
-----------------
+## Example Playbook
 
-```
+```yaml
 - hosts: all
   become: true
   vars:
@@ -222,18 +217,18 @@ Example Playbook
   tasks:
 ```
 
-License
--------
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
 Larry Smith Jr.
-- @mrlesmithjr
-- http://everythingshouldbevirtual.com
-- mrlesmithjr [at] gmail.com
 
-[Ansible]: <https://ansible.com>
-[Elasticsearch]: <https://www.elastic.co/>
+-   @mrlesmithjr
+-   <http://everythingshouldbevirtual.com>
+-   mrlesmithjr [at] gmail.com
+
+[ansible]: https://ansible.com
+
+[elasticsearch]: https://www.elastic.co/
