@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: test-nodes
   sudo: true
   vars:
     - es_allow_remote_connections: true
