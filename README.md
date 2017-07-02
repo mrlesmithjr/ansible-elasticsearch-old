@@ -1,6 +1,21 @@
-# Role Name
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-An [Ansible] role to install [Elasticsearch]
+- [ansible-elasticsearch](#ansible-elasticsearch)
+  - [Build Status](#build-status)
+  - [Requirements](#requirements)
+  - [Role Variables](#role-variables)
+  - [Dependencies](#dependencies)
+  - [Example Playbook](#example-playbook)
+  - [License](#license)
+  - [Author Information](#author-information)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# ansible-elasticsearch
+
+An [Ansible](https://www.ansible.com) role to install/configure [Elasticsearch](https://www.elastic.co/products/elasticsearch)
 
 ## Build Status
 
@@ -219,16 +234,12 @@ None
 
 ## License
 
-BSD
+MIT
 
 ## Author Information
 
 Larry Smith Jr.
 
--   @mrlesmithjr
--   <http://everythingshouldbevirtual.com>
+-   [@mrlesmithjr](https://www.twitter.com/mrlesmithjr)
+-   [EverythingShouldBeVirtual](http://everythingshouldbevirtual.com)
 -   mrlesmithjr [at] gmail.com
-
-[ansible]: https://ansible.com
-
-[elasticsearch]: https://www.elastic.co/
