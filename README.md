@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [ansible-elasticsearch](#ansible-elasticsearch)
   - [Build Status](#build-status)
@@ -8,6 +8,9 @@
   - [Role Variables](#role-variables)
   - [Dependencies](#dependencies)
   - [Example Playbook](#example-playbook)
+  - [Vagrant](#vagrant)
+    - [Spinning up](#spinning-up)
+    - [Tearing down](#tearing-down)
   - [License](#license)
   - [Author Information](#author-information)
 
@@ -230,6 +233,27 @@ None
   roles:
     - role: ansible-elasticsearch
   tasks:
+```
+
+## Vagrant
+
+Included is a [Vagrant](https://www.vagrantup.com) testing environment.
+
+### Spinning up
+
+You can easily spin up this environment by doing the following:
+
+```bash
+cd Vagrant
+vagrant up
+```
+
+### Tearing down
+
+You can easily tear down this environment by doing the following:
+
+```bash
+./cleanup.sh
 ```
 
 ## License
